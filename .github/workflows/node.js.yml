@@ -2,10 +2,10 @@ name: Deploy React App
 
 on:
   push:
-    branches: [ "main" ]  # Deploy only when main is updated
+    branches: [ "main" ]
 
 permissions:
-  contents: write  # Required to push to gh-pages
+  contents: write
 
 jobs:
   build:
@@ -17,11 +17,11 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18.x'
+          node-version: '20.x'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install dependencies (including dev)
+        run: npm ci --include=dev
 
       - name: Build project
         run: npm run build
